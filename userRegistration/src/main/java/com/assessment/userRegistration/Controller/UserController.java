@@ -14,6 +14,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
+
     //get all users
     @GetMapping("/getUsers")
     public List<UserDTO> get_User(){
@@ -29,13 +31,8 @@ public class UserController {
             return "Mobile no Can not be Empty";
         }else{
            UserDTO savedUser = userService.saveUser((userDTO));
-           if(savedUser != null){
-               return "User Saved successfully";
-           }else{
                return "User Saved successfully";
            }
-
-        }
 
     }
     //update  user
@@ -58,12 +55,7 @@ public class UserController {
     //GetUserByUserID
     @GetMapping("getUserByUserID/{userID}")
     public UserDTO getUserByUserID(@PathVariable String userID){
-
-
       UserDTO user = userService.getUserByUserID(userID);
-      if(user==null){
-          throw new ApiRequestException("exception");
-      }
       return user;
     }
 }

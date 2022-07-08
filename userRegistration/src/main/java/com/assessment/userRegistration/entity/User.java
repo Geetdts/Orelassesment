@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -19,5 +20,7 @@ public class User {
     private String mobile_no;
     @NonNull
     private String email;
+
+    private Date date;
 
 }
