@@ -2,6 +2,7 @@ package com.assessment.userRegistration.service;
 
 import com.assessment.userRegistration.dto.UserDTO;
 import com.assessment.userRegistration.entity.User;
+import com.assessment.userRegistration.exception.ApiRequestException;
 import com.assessment.userRegistration.repo.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -36,5 +37,23 @@ public class UserService {
     public boolean deleteUser(UserDTO userDTO){
         userRepo.delete(modelMapper.map(userDTO,User.class));
         return true;
+    }
+    //get user by id
+    public  UserDTO getUserByUserID(String userID){
+
+      User user= userRepo.getUserByUserID(userID);
+      if(user==null){
+          throw new ApiRequestException("User not found");
+      }
+        return modelMapper.map(user,UserDTO.class);
+    }
+    //Check user availability
+    public  boolean checkUserAvailabiity(String mobileNo ,String email){
+        User user= userRepo.CheckUserAvailability(mobileNo,email);
+        if(user ==null){
+            return false;
+        }else{
+            return true;
+        }
     }
 }
