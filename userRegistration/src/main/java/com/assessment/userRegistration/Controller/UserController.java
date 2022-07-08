@@ -1,6 +1,7 @@
 package com.assessment.userRegistration.Controller;
 
 import com.assessment.userRegistration.dto.UserDTO;
+import com.assessment.userRegistration.exception.ApiRequestException;
 import com.assessment.userRegistration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ public class UserController {
     //save new user
     @PostMapping("/saveUser")
     public String save_User(@RequestBody UserDTO userDTO){
+
         if(userDTO.getEmail()==null){
             return "Email can not be empty";
         }else if(userDTO.getMobile_no()==null){
@@ -51,5 +53,17 @@ public class UserController {
     @DeleteMapping("deleteUser")
     public boolean delete_user(@RequestBody UserDTO userDTO){
         return userService.deleteUser(userDTO);
+    }
+
+    //GetUserByUserID
+    @GetMapping("getUserByUserID/{userID}")
+    public UserDTO getUserByUserID(@PathVariable String userID){
+
+
+      UserDTO user = userService.getUserByUserID(userID);
+      if(user==null){
+          throw new ApiRequestException("exception");
+      }
+      return user;
     }
 }
