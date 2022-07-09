@@ -1,11 +1,10 @@
 package com.assessment.userRegistration.Controller;
-
 import com.assessment.userRegistration.dto.UserDTO;
 import com.assessment.userRegistration.exception.ApiRequestException;
 import com.assessment.userRegistration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -51,7 +50,6 @@ public class UserController {
     public boolean delete_user(@RequestBody UserDTO userDTO){
         return userService.deleteUser(userDTO);
     }
-
     //GetUserByUserID
     @GetMapping("getUserByUserID/{userID}")
     public UserDTO getUserByUserID(@PathVariable String userID){

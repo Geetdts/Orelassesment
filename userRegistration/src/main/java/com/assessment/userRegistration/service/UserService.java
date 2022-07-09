@@ -3,13 +3,11 @@ package com.assessment.userRegistration.service;
 import com.assessment.userRegistration.dto.UserDTO;
 import com.assessment.userRegistration.entity.User;
 import com.assessment.userRegistration.exception.ApiRequestException;
-import com.assessment.userRegistration.repo.LogRepo;
 import com.assessment.userRegistration.repo.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 @Service
@@ -19,8 +17,7 @@ public class UserService {
     private ModelMapper modelMapper;
     @Autowired
     private UserRepo userRepo;
-    @Autowired
-    private LogRepo logRepo;
+
     //save User service
     public UserDTO saveUser(UserDTO userDTO){
         String email = userDTO.getEmail();
@@ -28,16 +25,16 @@ public class UserService {
         if(!checkUserAvailable(mobile,email)){
             userRepo.save(modelMapper.map(userDTO,User.class));
         }else{
-//logRepo log ={}
             throw new ApiRequestException("User Already exist");
         }
-
         return userDTO;
     }
     //get All Users Service
     public List<UserDTO> getAllUsers(){
+        System.out.println("ttt");
         List<User> userList = userRepo.findAll();
-        return  modelMapper.map(userList,new TypeToken<List<UserDTO>>(){}.getType());
+        System.out.println(userRepo.findAll());
+        return modelMapper.map(userList,new TypeToken<List<UserDTO>>(){}.getType());
     }
     //Update User Service
     public  UserDTO updateUser(UserDTO userDTO){
