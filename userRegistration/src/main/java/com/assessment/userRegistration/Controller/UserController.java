@@ -1,11 +1,9 @@
 package com.assessment.userRegistration.Controller;
 
 import com.assessment.userRegistration.dto.UserDTO;
-import com.assessment.userRegistration.exception.ApiRequestException;
 import com.assessment.userRegistration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -14,11 +12,13 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
     //get all users
     @GetMapping("/getUsers")
     public List<UserDTO> get_User(){
         return userService.getAllUsers();
     }
+
     //save new user
     @PostMapping("/saveUser")
     public String save_User(@RequestBody UserDTO userDTO){
@@ -29,14 +29,8 @@ public class UserController {
             return "Mobile no Can not be Empty";
         }else{
            UserDTO savedUser = userService.saveUser((userDTO));
-           if(savedUser != null){
-               return "User Saved successfully";
-           }else{
                return "User Saved successfully";
            }
-
-        }
-
     }
     //update  user
     @PutMapping("/updateUser")
@@ -58,12 +52,7 @@ public class UserController {
     //GetUserByUserID
     @GetMapping("getUserByUserID/{userID}")
     public UserDTO getUserByUserID(@PathVariable String userID){
-
-
       UserDTO user = userService.getUserByUserID(userID);
-      if(user==null){
-          throw new ApiRequestException("exception");
-      }
       return user;
     }
 }

@@ -8,7 +8,6 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 @Service
@@ -18,15 +17,24 @@ public class UserService {
     private ModelMapper modelMapper;
     @Autowired
     private UserRepo userRepo;
+
     //save User service
     public UserDTO saveUser(UserDTO userDTO){
-        userRepo.save(modelMapper.map(userDTO,User.class));
+        String email = userDTO.getEmail();
+        String mobile =userDTO.getMobile_no();
+        if(!checkUserAvailable(mobile,email)){
+            userRepo.save(modelMapper.map(userDTO,User.class));
+        }else{
+            throw new ApiRequestException("User Already exist");
+        }
         return userDTO;
     }
     //get All Users Service
     public List<UserDTO> getAllUsers(){
+
         List<User> userList = userRepo.findAll();
-        return  modelMapper.map(userList,new TypeToken<List<UserDTO>>(){}.getType());
+
+        return modelMapper.map(userList,new TypeToken<List<UserDTO>>(){}.getType());
     }
     //Update User Service
     public  UserDTO updateUser(UserDTO userDTO){
@@ -48,7 +56,7 @@ public class UserService {
         return modelMapper.map(user,UserDTO.class);
     }
     //Check user availability
-    public  boolean checkUserAvailabiity(String mobileNo ,String email){
+    public  boolean checkUserAvailable(String mobileNo , String email){
         User user= userRepo.CheckUserAvailability(mobileNo,email);
         if(user ==null){
             return false;
