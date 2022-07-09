@@ -20,6 +20,7 @@ _Instructions_
     
 * username ="ADMIN"
 * role ="ADMIN"
+*password="$2a$12$qSGYdGXU64dMbiFTyr68TOmzBcsHvlLMCilPb00AWD0aGpoYLRKgm"
 
 keep other columns as you want.
 
