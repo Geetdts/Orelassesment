@@ -27,10 +27,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //for the testing allowed for all users all paths
         http.authorizeRequests().antMatchers("/user/getUsers").permitAll();
-        http.authorizeRequests().antMatchers("user/saveUser").permitAll();
-        http.authorizeRequests().antMatchers("user/updateUser").permitAll();
-        http.authorizeRequests().antMatchers("user/deleteUser").permitAll();
-        http.authorizeRequests().antMatchers("user/getUserByUserID/{userID}").permitAll();
+        http.authorizeRequests().antMatchers("/user/saveUser").permitAll();
+        http.authorizeRequests().antMatchers("/user/updateUser").permitAll();
+        http.authorizeRequests().antMatchers("/user/deleteUser").permitAll();
+        http.authorizeRequests().antMatchers("/user/getUserByUserID/{userID}").permitAll();
 //        http.authorizeHttpRequests()
 //                .antMatchers("/")
 //                .permitAll()
