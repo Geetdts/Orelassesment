@@ -1,34 +1,28 @@
 package com.assessment.userRegistration.Controller;
-
 import com.assessment.userRegistration.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
 import java.util.Collection;
 import java.util.Collections;
 
-//@Component
-
 public class CustomUserDetails implements UserDetails {
 
-    @Autowired
+    @Autowired//Bind User entity
     private User user;
     public CustomUserDetails(User user) {
         super();
         this.user = user;
     }
-    @Autowired
+    @Autowired //Bind model Mapper
     private ModelMapper modelMapper;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
        return Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
-      //  return Collections.singleton(new SimpleGrantedAuthority("USER"));
+
     }
 
     @Override
@@ -38,7 +32,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return user.getUsername();
     }
 
     @Override

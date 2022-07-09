@@ -10,8 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -27,9 +25,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //set Authorizations here
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       http.authorizeRequests().antMatchers("/user/getUsers").permitAll();
-
-
+        //for the testing allowed for all users all paths
+        http.authorizeRequests().antMatchers("/user/getUsers").permitAll();
+        http.authorizeRequests().antMatchers("user/saveUser").permitAll();
+        http.authorizeRequests().antMatchers("user/updateUser").permitAll();
+        http.authorizeRequests().antMatchers("user/deleteUser").permitAll();
+        http.authorizeRequests().antMatchers("user/getUserByUserID/{userID}").permitAll();
 //        http.authorizeHttpRequests()
 //                .antMatchers("/")
 //                .permitAll()

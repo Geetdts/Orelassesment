@@ -31,9 +31,9 @@ public class UserService {
     }
     //get All Users Service
     public List<UserDTO> getAllUsers(){
-        System.out.println("ttt");
+
         List<User> userList = userRepo.findAll();
-        System.out.println(userRepo.findAll());
+
         return modelMapper.map(userList,new TypeToken<List<UserDTO>>(){}.getType());
     }
     //Update User Service

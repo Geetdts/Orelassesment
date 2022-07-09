@@ -1,9 +1,8 @@
 package com.assessment.userRegistration.Controller;
+
 import com.assessment.userRegistration.dto.UserDTO;
-import com.assessment.userRegistration.exception.ApiRequestException;
 import com.assessment.userRegistration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,12 +13,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     //get all users
     @GetMapping("/getUsers")
     public List<UserDTO> get_User(){
         return userService.getAllUsers();
     }
+
     //save new user
     @PostMapping("/saveUser")
     public String save_User(@RequestBody UserDTO userDTO){
@@ -32,7 +31,6 @@ public class UserController {
            UserDTO savedUser = userService.saveUser((userDTO));
                return "User Saved successfully";
            }
-
     }
     //update  user
     @PutMapping("/updateUser")
@@ -50,6 +48,7 @@ public class UserController {
     public boolean delete_user(@RequestBody UserDTO userDTO){
         return userService.deleteUser(userDTO);
     }
+
     //GetUserByUserID
     @GetMapping("getUserByUserID/{userID}")
     public UserDTO getUserByUserID(@PathVariable String userID){
