@@ -29,25 +29,33 @@ Use above username and password for api basic authentication
 ```
 user/getUsers
 ```
+![image info](https://github.com/Geetdts/Orelassesment/blob/main/Screenshots/getUserList.png)
+
 **Save an users to the table**
 ```
 user/saveUser
 ```
+![image info](https://github.com/Geetdts/Orelassesment/blob/main/Screenshots/SaveUser.png)
+
 **Update an user**
 ```
 user/updateUser
 ```
+![image info](https://github.com/Geetdts/Orelassesment/blob/main/Screenshots/UpdateUser.png)
+
 **Delete an user**
 ```
 user/deleteUser
 ```
+![image info](https://github.com/Geetdts/Orelassesment/blob/main/Screenshots/DeleteUser.png)
+
 **Find a user**
 ```
 user/getUserByUserID/{userID}
 ```
+![image info](https://github.com/Geetdts/Orelassesment/blob/main/Screenshots/GetUserByID.png)
 
 ---
-This is my first ever spring boot project, I studied, and completed 3 questions out of
-4 with in this 2 Day.
+
 
 Thank You OREL IT For the opportunity.
