@@ -57,6 +57,28 @@ user/getUserByUserID/{userID}
 ![image info](https://github.com/Geetdts/Orelassesment/blob/main/Screenshots/GetUserByID.png)
 
 ---
+Answer for question No 03.
+---
+AS question says tasks should be exicuted according to the priority.So we have to use priority scheduling algorithem with different arrival times.
+
+Priority scheduling is a non-preemptive algorithm and one of the most common scheduling algorithms in batch systems. Each process is assigned first arrival time (less arrival time process first) if two processes have same arrival time, then compare to priorities (highest process first). Also, if two processes have same priority then compare to process number (less process number first). This process is repeated while all process get executed.
+
+**Implementation**
+1.First input the task with their arrival time, burst time and priority.
+2.First task will schedule, which have the lowest arrival time, if two or more task will have lowest arrival time, then whoever has higher priority will  schedule first.
+3.Now further task will be schedule according to the arrival time and priority of the process. (Here we are assuming that lower the priority number having higher priority). If two task priority are same then sort according to process number.
+4.Once all the task have been arrived, we can schedule them based on their priority.
+
+Example task chart
+
+| Task | Arrival Time | Execution Time | Priority |
+|------|--------------|----------------|----------|
+|   1  |       0      |        3       |     3    |
+|   2  |       1      |        6       |     4    |
+|   3  |       3      |        1       |     9    |
+|   4  |       2      |        2       |     7    |
+|   5  |       4      |        4       |     8    |
+
 
 
 Thank You OREL IT For the opportunity.
